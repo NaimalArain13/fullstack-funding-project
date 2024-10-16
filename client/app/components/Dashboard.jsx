@@ -6,6 +6,7 @@ import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
 import Sidebar from "./Sidebar";
 import { Menu } from "lucide-react"; // Icon for mobile menu
+import Navbar from "./Navbar";
 
 const dummyApplications = [
   { id: 1, name: "John Doe", category: "Education", status: "Pending", documentsVerified: false },
@@ -71,7 +72,9 @@ const AdminDashboard = () => {
   };
 
   return (
-    <div className="flex flex-col min-h-screen md:flex-row pt-16">
+    <div >
+      <div className="hidden md:flex "><Navbar /></div>
+    <div className="flex flex-col min-h-screen md:flex-row md:pt-16">
       {/* Mobile menu button */}
       <div className="md:hidden bg-[#203e80] text-white p-3 flex justify-between items-center">
         <h1 className="text-2xl font-bold">Funders</h1>
@@ -154,6 +157,7 @@ const AdminDashboard = () => {
           </Button>
         </Card>
       </div>
+    </div>
     </div>
   );
 };

@@ -83,7 +83,7 @@ const Register = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center items-center pt-11 bg-gray-200 min-h-screen">
+    <div className="flex flex-col justify-center items-center pt-11 bg-gray-100 min-h-screen">
       <Card className="bg-white shadow-2xl rounded-lg p-8 max-w-lg w-full">
         {error && <div className="text-xl text-red-600">{error}</div>}
         <h1 className="text-3xl my-4 text-blue-600 font-semibold text-center">Create an Account</h1>
