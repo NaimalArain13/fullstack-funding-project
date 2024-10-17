@@ -1,5 +1,5 @@
-import Register from "../components/Register";
-import Navbar from "../components/Navbar";
+import Register from "../../components/Register";
+import Navbar from "../../components/Navbar";
 export default function Login(){
     return(
         <>
