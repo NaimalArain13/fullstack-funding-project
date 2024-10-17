@@ -1,9 +1,9 @@
 "use client"; // For Next.js
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Card } from "@/components/ui/card";
+import { Button } from "../../components/ui/button";
+import { Input } from "../../components/ui/input";
+import { Card } from "../../components/ui/card";
 import Sidebar from "./Sidebar";
 import { Menu } from "lucide-react"; // Icon for mobile menu
 import Navbar from "./Navbar";
