@@ -8,7 +8,7 @@ import Link from "next/link";
 
 // Login form
 export default function LoginForm() {
-  const [error, setError] = useState("");
+  
 
   return (
     <div className="flex flex-col md:flex-row min-h-screen">
@@ -25,7 +25,7 @@ export default function LoginForm() {
       {/* Right Side - Login Form */}
       <div className="w-full md:w-1/2 flex justify-center items-center bg-gray-200 p-8">
         <Card className="bg-white shadow-2xl rounded-xl p-8 max-w-md w-full">
-          {error && <div className="text-xl text-red-600">{error}</div>}
+          {/* {error && <div className="text-xl text-red-600">{error}</div>} */}
           <h1 className="text-3xl my-4 text-blue-600 font-semibold text-center">
             Login to Your Account
           </h1>

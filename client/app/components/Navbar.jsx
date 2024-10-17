@@ -18,19 +18,19 @@ const Navbar = () => {
   const routes = [
     {
       name: "Home",
-      href: "/",
+      href: "#",
     },
     {
       name: "Donation",
-      href: "/donation",
+      href: "#",
     },
     {
       name: "How it Works",
-      href: "/working",
+      href: "#",
     },
     {
       name: "About Us",
-      href: "/about",
+      href: "#",
     },
   ];
 
@@ -80,7 +80,7 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden flex flex-col space-y-4 px-6 py-4 bg-[#203e80] text-white">
+        <div className="md:hidden flex flex-col space-y-4 px-6 py-4 bg-[#203e80] solid text-white">
           {routes.map((route, index) => (
             <Link
               href={route.href}

@@ -6,7 +6,7 @@ const HeroSection = () => {
     <section className="relative w-full h-[400px] md:h-[500px] bg-gray-200 rounded-lg overflow-hidden flex items-center justify-center">
       {/* Background Image */}
       <Image
-        src="/images.jpg" // Replace with your actual image path
+        src="/images.jpg" 
         alt="Helping Hands"
         layout="fill"
         objectFit="cover"

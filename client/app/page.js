@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import JoinFundSection from "./components/JoinFundSection";
 import HeroSection from "./components/HeroSection"
 import Card from "./components/Card";
+import FaqSection from "./components/FAQs";
 
 const obj = [
   {
@@ -41,6 +42,7 @@ export default function Home() {
       </div>
       
       <JoinFundSection />
+      <FaqSection />
     </div>
   );
 }

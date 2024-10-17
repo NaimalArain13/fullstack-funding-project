@@ -1,7 +1,7 @@
 import Image from "next/image";
 const JoinFundraisersSection = () => {
     return (
-        <section className="bg-orange-100 text-center py-16 px-4 pt-8">
+        <div className="bg-orange-100 text-center py-16 px-4 pt-8">
             <div className="flex justify-center items-center space-x-4 mb-8">
                 {/* Images */}
                 <div className="w-20 h-20 overflow-hidden rounded-xl transition-transform hover:scale-105">
@@ -33,7 +33,7 @@ const JoinFundraisersSection = () => {
             <button className="mt-8 bg-orange-400 text-white px-6 py-3 rounded-full text-lg font-semibold hover:bg-orange-500">
                 Join FundRaisers Now!
             </button>
-        </section>
+        </div>
     );
 };
 
