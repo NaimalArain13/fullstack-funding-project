@@ -7,6 +7,7 @@ import { MdOutlineEmail } from "react-icons/md";
 
 const Footer = () => {
     return (
+        <div className="bg-orange-100">
         <footer className="bg-[#203e80] rounded-2xl mx-auto w-full max-w-7xl p-8 text-white">
             <div className="grid md:grid-cols-2 gap-8">
                 {/* Left Section */}
@@ -48,14 +49,22 @@ const Footer = () => {
             <div className="mt-8 text-center md:text-left text-gray-white">
                 &copy; 2024 Funder. <br /> All rights reserved.
             </div>
-            <div className="flex flex-col space-y-4 md:flex-row md:space-x-4 items-center pt-5">
+            <div className="hidden md:flex  md:space-x-4 md:items-center md:pt-5">
             <button className="bg-orange-400 hover:bg-orange-500 px-11 py-2  rounded-full flex items-center "><IoLogoFacebook  size={25}/>Facebook</button>
             <button className="bg-orange-400 hover:bg-orange-500 px-11 py-2 rounded-full flex items-center "><FaTwitterSquare size={25}/>Twitter</button>
             <button className="bg-orange-400 hover:bg-orange-500 px-11 py-2 rounded-full flex items-center"><MdOutlineEmail size={25}/>Email</button>
             
             </div>
+            <div className="flex space-x-4 justify-center items-center md:hidden">
+            <button className="bg-orange-400 hover:bg-orange-500 items-center "><IoLogoFacebook  size={25}/></button>
+            <button className="bg-orange-400 hover:bg-orange-500 items-center "><FaTwitterSquare size={25}/></button>
+            <button className="bg-orange-400 hover:bg-orange-500 items-center"><MdOutlineEmail size={25}/></button>
+            
+            </div>
+
             </div>
         </footer>
+        </div>
     );
 };
 

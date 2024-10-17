@@ -74,7 +74,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:block">
-        <button className="bg-yellow-600 px-4 py-2 rounded-xl">Donate</button>
+        <button className="bg-orange-400 hover:bg-orange-500 px-4 py-2 rounded-xl">Donate</button>
         </div>
       </div>
 
