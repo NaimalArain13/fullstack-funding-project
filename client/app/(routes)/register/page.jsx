@@ -1,11 +1,10 @@
-import Register from "../../components/Register";
-import Navbar from "../../components/Navbar";
+import Register from "../../components/Register/Register";
 export default function Login(){
     return(
-        <>
-        <Navbar />
+        <div>
+        
         <Register />
-        </>
+        </div>
         
     )
 }

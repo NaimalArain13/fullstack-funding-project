@@ -1,9 +1,9 @@
 "use client";
-import Navbar from "./components/Navbar";
-import JoinFundSection from "./components/JoinFundSection";
-import HeroSection from "./components/HeroSection"
+import Navbar from "./components/LandingPage/Navbar";
+import JoinFundSection from "./components/LandingPage/JoinFundSection";
+import HeroSection from "./components/LandingPage/HeroSection"
 import { Card } from "@/components/ui/card";
-import FaqSection from "./components/FAQs";
+import FaqSection from "./components/LandingPage/FAQs";
 
 const obj = [
   {
