@@ -2,8 +2,8 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import axios from 'axios';
+import { motion } from 'framer-motion';  // Assuming you're using Framer Motion
 import './Signup.css';
-
 
 const Signup = () => {
   const router = useRouter();
@@ -79,8 +79,6 @@ const Signup = () => {
     form.append('voucherCategory', voucherCategory);
     form.append('Accepted', termsAccepted);
 
-    console.log([...form.entries()]);
-
     try {
       const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/api/auth/register`, form, {
         headers: {
@@ -90,7 +88,6 @@ const Signup = () => {
       setMessage(response.data.message);
       router.push('/beneficiar');
     } catch (error) {
-      console.error("Error during registration:", error);
       setMessage(error.response ? error.response.data.message : 'Registration failed!');
     } finally {
       setLoading(false);
@@ -98,137 +95,211 @@ const Signup = () => {
   };
 
   return (
-    <div className="signup-container">
-      <div className={`signup-form ${isFormVisible ? "fadeIn" : ""}`}>
-        <h2 className="signup-title">Create Your Account</h2>
-        <form className="form-signup" onSubmit={handleSubmit}>
-          <div className="input-container">
-            <label htmlFor="userType" className="input-label">Are you a Beneficiary or Service Provider?</label>
-            <select 
-              id="userType" 
-              className="input-field" 
-              value={userType === "Beneficiary" ? "beneficiary" : "serviceProvider"}
-              onChange={handleUserTypeChange} 
-              required
-            >
-              <option value="">Select</option>
-              <option value="beneficiary">Beneficiary</option>
-              <option value="serviceProvider">Service Provider</option>
-            </select>
-          </div>
+    <div className="flex flex-col justify-center items-center pt-11 bg-gray-100 min-h-screen">
+      <div className="grid md:grid-cols-1 gap-8 max-w-5xl">
+        {/* Form Section */}
+        <motion.div
+          className={`bg-white shadow-2xl rounded-lg p-8 w-full max-w-lg`}
+          initial={{ opacity: 0, y: 50 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          {message && <div className="text-xl text-red-600">{message}</div>}
+          <h1 className="text-3xl my-4 text-blue-600 font-semibold text-center">Create Your Account</h1>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <div>
+              <label htmlFor="userType" className="block text-sm font-medium text-gray-700">Are you a Beneficiary or Service Provider?</label>
+              <select
+                name="userType"
+                id="userType"
+                className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={userType === "Beneficiary" ? "beneficiary" : "serviceProvider"}
+                onChange={handleUserTypeChange}
+                required
+              >
+                <option value="">Select</option>
+                <option value="beneficiary">Beneficiary</option>
+                <option value="serviceProvider">Service Provider</option>
+              </select>
+            </div>
 
-          {["name", "email", "cnic", "password", "confirmPassword"].map(field => (
-            <div className="input-container" key={field}>
-              <label htmlFor={field} className="input-label">{field.charAt(0).toUpperCase() + field.slice(1)}</label>
+            {/* Row 1: Name and Email */}
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="w-full">
+                <label htmlFor="name" className="block text-sm font-medium text-gray-700">
+                  Name
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={formData.name}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+              <div className="w-full">
+                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={formData.email}
+                  onChange={handleChange}
+                  required
+                />
+              </div>
+            </div>
+
+            {/* Row 2: CNIC */}
+            <div className="w-full">
+              <label htmlFor="cnic" className="block text-sm font-medium text-gray-700">
+                CNIC
+              </label>
               <input
-                type={field.includes("password") ? "password" : "text"}
-                id={field}
-                name={field}
-                className="input-field"
-                value={formData[field]}
+                type="text"
+                id="cnic"
+                name="cnic"
+                className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={formData.cnic}
                 onChange={handleChange}
                 required
               />
             </div>
-          ))}
 
-          <div className="input-container">
-            <label htmlFor="vouchers" className="input-label">Voucher Category</label>
-            <select 
-              id="vouchers" 
-              className="input-field" 
-              value={voucherCategory} 
-              onChange={handleVoucherChange} 
-              required
-            >
-              <option value="">Select Category</option>
-              <option value="Education">Education</option>
-              <option value="Healthcare">Healthcare</option>
-            </select>
-          </div>
-
-          {voucherCategory === "Education" && userType === "Beneficiary" && (
-            <>
-              <div className="input-container">
-                <label htmlFor="cgpa" className="input-label">CGPA</label>
+            {/* Row 3: Password and Confirm Password */}
+            <div className="flex flex-col md:flex-row gap-4">
+              <div className="w-full">
+                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                  Password
+                </label>
                 <input
-                  type="number"
-                  id="cgpa"
-                  name="cgpa"
-                  className="input-field"
-                  value={formData.cgpa}
+                  type="password"
+                  id="password"
+                  name="password"
+                  className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={formData.password}
                   onChange={handleChange}
                   required
                 />
               </div>
-              <div className="input-container">
-                <label htmlFor="universityName" className="input-label">University Name</label>
+              <div className="w-full">
+                <label htmlFor="confirmPassword" className="block text-sm font-medium text-gray-700">
+                  Confirm Password
+                </label>
                 <input
-                  type="text"
-                  id="universityName"
-                  name="universityName"
-                  className="input-field"
-                  value={formData.universityName}
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  value={formData.confirmPassword}
                   onChange={handleChange}
                   required
                 />
               </div>
-            </>
-          )}
+            </div>
 
-          {userType === "Service Provider" && (
-            ["serviceProviderName", "city", "country"].map(field => (
-              <div className="input-container" key={field}>
-                <label htmlFor={field} className="input-label">{field.charAt(0).toUpperCase() + field.slice(1)}</label>
-                <input
-                  type="text"
-                  id={field}
-                  name={field}
-                  className="input-field"
-                  value={formData[field]}
-                  onChange={handleChange}
-                  required
-                />
-              </div>
-            ))
-          )}
+            {/* Voucher Category */}
+            <div>
+              <label htmlFor="vouchers" className="block text-sm font-medium text-gray-700">Voucher Category:</label>
+              <select
+                id="vouchers"
+                className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                value={voucherCategory}
+                onChange={handleVoucherChange}
+                required
+              >
+                <option value="">Select Category</option>
+                <option value="Education">Education</option>
+                <option value="Healthcare">Healthcare</option>
+              </select>
+            </div>
 
-          <div className="input-container">
-            <label htmlFor="profilePictures" className="input-label">Profile Pictures</label>
-            <input
-              type="file"
-              id="profilePictures"
-              name="profilePictures"
-              accept="image/*"
-              multiple
-              onChange={handleChange}
-            />
-          </div>
+            {/* Conditional Fields for Education Beneficiaries */}
+            {voucherCategory === "Education" && userType === "Beneficiary" && (
+              <>
+                <div>
+                  <label htmlFor="cgpa" className="block text-sm font-medium text-gray-700">CGPA:</label>
+                  <input
+                    type="number"
+                    id="cgpa"
+                    name="cgpa"
+                    className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={formData.cgpa}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+                <div>
+                  <label htmlFor="universityName" className="block text-sm font-medium text-gray-700">University Name:</label>
+                  <input
+                    type="text"
+                    id="universityName"
+                    name="universityName"
+                    className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={formData.universityName}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              </>
+            )}
 
-          <div className="terms-container">
-            <label className="terms-label">
+            {/* Conditional Fields for Service Providers */}
+            {userType === "Service Provider" && (
+              ["serviceProviderName", "city", "country"].map(field => (
+                <div key={field}>
+                  <label htmlFor={field} className="block text-sm font-medium text-gray-700">
+                    {field.charAt(0).toUpperCase() + field.slice(1)}:
+                  </label>
+                  <input
+                    type="text"
+                    id={field}
+                    name={field}
+                    className="my-2 w-full border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    value={formData[field]}
+                    onChange={handleChange}
+                    required
+                  />
+                </div>
+              ))
+            )}
+
+            {/* Terms & Conditions */}
+            <div className="my-2 flex items-center">
               <input
                 type="checkbox"
+                id="terms"
                 checked={termsAccepted}
                 onChange={() => setTermsAccepted(!termsAccepted)}
                 required
               />
-              I accept the terms and conditions
-            </label>
-          </div>
+              <label htmlFor="terms" className="ml-2 text-sm text-gray-600">
+                I accept the terms and conditions.
+              </label>
+            </div>
 
-          <button type="submit" className="submit-button" disabled={loading || !termsAccepted}>
-            {loading ? "Signing Up..." : "Sign Up"}
-          </button>
-
-          {message && <div className="message">{message}</div>}
-        </form>
+            {/* Submit Button */}
+            <button
+              type="submit"
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-lg py-2"
+              disabled={loading}
+            >
+              {loading ? "Registering..." : "Register"}
+            </button>
+          </form>
+        </motion.div>
       </div>
     </div>
   );
 };
 
 export default Signup;
+
 
 
 // "use client";

@@ -2,7 +2,7 @@
 import Navbar from "./components/LandingPage/Navbar";
 import JoinFundSection from "./components/LandingPage/JoinFundSection";
 import HeroSection from "./components/LandingPage/HeroSection"
-import { Card } from "@/components/ui/card";
+import { Card } from "../components/ui/card";
 import FaqSection from "./components/LandingPage/FAQs";
 
 const obj = [

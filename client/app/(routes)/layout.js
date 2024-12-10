@@ -1,4 +1,5 @@
 import Navbar from "../components/LandingPage/Navbar";
+import Footer from "../components/LandingPage/Footer";
 
 export default function RootLayout({ children }) {
     return (
@@ -6,7 +7,7 @@ export default function RootLayout({ children }) {
           <div>
             <Navbar />
              {children}
-             
+             <Footer />
           </div>
          
          

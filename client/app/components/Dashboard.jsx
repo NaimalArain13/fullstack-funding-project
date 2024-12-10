@@ -6,7 +6,6 @@ import { Input } from "../../components/ui/input";
 import { Card } from "../../components/ui/card";
 import Sidebar from "./Sidebar";
 import { Menu } from "lucide-react"; // Icon for mobile menu
-import Navbar from "./Navbar";
 
 const dummyApplications = [
   { id: 1, name: "John Doe", category: "Education", status: "Pending", documentsVerified: false },
@@ -17,14 +16,14 @@ const dummyApplications = [
 ];
 
 // Funds available for each category
-const availableFunds = {
-  Education: 600,
-  Healthcare: 300,
-  Food: 150,
-  Religion: 200,
-  Children: 250,
-  Refugees: 100,
-  Humanitarian: 50,
+enum Categories  {
+  Education,
+  Healthcare,
+  Food,
+  Religion,
+  Children,
+  Refugees,
+  Humanitarian,
 };
 
 const categories = Object.keys(availableFunds); // Using keys from the availableFunds object
